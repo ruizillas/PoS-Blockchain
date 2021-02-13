@@ -27,4 +27,13 @@ class Block {
     static hash(timestamp, lastHash, data) {
         return SHA256(`${timestamp}${lastHash}${data}`).toString();
     }
+
+    static createBlock(lastBlock, data) {
+        let hash;
+        let timestamp = Date.now();
+        const lastHash = lastBlock.hash;
+        hash = Block.hash(timestamp, lastHash, data);
+    
+        return new this(timestamp, lastHash, hash, data);
+      }
 }
