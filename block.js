@@ -33,7 +33,13 @@ class Block {
         let timestamp = Date.now();
         const lastHash = lastBlock.hash;
         hash = Block.hash(timestamp, lastHash, data);
-    
+
         return new this(timestamp, lastHash, hash, data);
-      }
+    }
+
+    static blockHash(block){
+        
+        const { timestamp, lastHash, data } = block;
+        return Block.hash(timestamp,lastHash,data);
+    }
 }
